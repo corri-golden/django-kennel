@@ -1,0 +1,16 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+    <h1>Kennels</h1>
+
+    <ol>
+    {% for kennel in all_kennels %}
+        <li>
+        <a href="{% url 'kennelapp:kennel' kennel.id %}"> {{ kennel.title }} </a>
+         {{kennel.address}}
+        </li>
+    {% endfor %}
+    </ol>
+  </body>
+</html>
+{% endblock %}

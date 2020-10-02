@@ -1,0 +1,9 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+  <body>
+    <h1>{{ caretaker.first_name }}</h1>
+    <h2>By {{ caretaker.last_name }}</h2>
+
+    <div>{{ caretaker.email }}</div>
+{% endblock %}

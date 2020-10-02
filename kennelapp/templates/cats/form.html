@@ -1,0 +1,47 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+    <h1>Cat Inventory</h1>
+
+
+    {% if cat.id is not None %}
+        <form action="{% url 'kennelapp:cat' cat.id %}" method="post">
+    {% else %}
+        <form action="{% url 'kennelapp:cats' %}" method="post">
+    {% endif %}
+        {% csrf_token %}
+      <fieldset>
+          <label for="name">Name: </label>
+          <input id="name" type="text" name="name" value="{{cat.name}}">
+      </fieldset>
+      <fieldset>
+          <label for="specie">Specie: </label>
+          <input id="specie" type="text" name="specie" value="{{cat.specie}}">
+      </fieldset>
+      <fieldset>
+          <label for="owner">Owner: </label>
+          <input id="owner" type="text" name="owner" value="{{cat.owner}}">
+      </fieldset>
+      <fieldset>
+          <label for="admitted">Date Admitted: </label>
+          <input id="admitted" type="number" name="admitted" value="{{cat.admitted}}">
+      </fieldset>
+      <fieldset>
+          <label for="location">Kennel: </label>
+          <select id="location" type="text" name="location">
+                {% for kennel in all_kennels %}
+                    <option {% if kennel.id == cat.location_id %}selected{% endif %} value="{{kennel.id}}">
+                    {{kennel.title}}</option>
+                {% endfor %}
+          </select>
+      </fieldset>
+
+        {% if cat.id is not None %}
+            <input type="hidden" name="actual_method" value="PUT">
+            <input type="submit" value="Update" />
+
+        {% else %}
+            <input type="submit" value="Create" />
+        {% endif %}
+    </form>
+{% endblock %}

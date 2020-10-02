@@ -1,0 +1,16 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+    <h1>Cats</h1>
+
+  <a href="{% url 'kennelapp:cat_form' %}">Add Book to Inventory</a>
+
+    <ol>
+    {% for cat in all_cats %}
+        <li>
+    <a href="{% url 'kennelapp:cat' cat.id %}"> {{ cat.name }} </a>
+    date admitted {{cat.admitted}}
+    </li>
+    {% endfor %}
+    </ol>
+{% endblock %}

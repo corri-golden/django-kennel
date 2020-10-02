@@ -1,0 +1,17 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+    <h1>{{ cat.name }}</h1>
+    <h2>Date Admitted {{ cat.admitted }}</h2>
+    <div>Located in the {{ cat.location.tittle}}</div>
+    <div>Registered by {{cat.caretaker.first_name}}{{cat.caretaker.last_name}}</div>
+  <form action="{% url 'kennelapp:cat' cat.id %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="actual_method" value="DELETE">
+    <button>Delete</button>
+</form>
+<form action="{% url 'kennelapp:cat_edit_form' cat.id %}" method="GET">
+    {% csrf_token %}
+    <button>Edit</button>
+</form>
+{% endblock %}

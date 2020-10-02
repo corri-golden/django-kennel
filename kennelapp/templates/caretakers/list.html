@@ -1,0 +1,14 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+    <h1>Caretakers</h1>
+
+    <ol>
+    {% for caretaker in all_caretakers %}
+        <li>
+        <a href="{% url 'kennelapp:caretaker' caretaker.id %}"> {{ caretaker.first_name }} </a>
+        {{caretaker.last_name}} {{caretaker.email}}
+        </li>
+    {% endfor %}
+    </ol>
+{% endblock %}
